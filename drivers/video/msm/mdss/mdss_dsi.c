@@ -612,8 +612,8 @@ static int mdss_dsi_update_panel_config(struct mdss_dsi_ctrl_pdata *ctrl_pdata,
 	if (mode == DSI_CMD_MODE) {
 		pinfo->mipi.mode = DSI_CMD_MODE;
 		pinfo->type = MIPI_CMD_PANEL;
-		pinfo->mipi.vsync_enable = 1;
-		pinfo->mipi.hw_vsync_mode = 1;
+		pinfo->mipi.vsync_enable = 0;
+		pinfo->mipi.hw_vsync_mode = 0;
 	} else {	/*video mode*/
 		pinfo->mipi.mode = DSI_VIDEO_MODE;
 		pinfo->type = MIPI_VIDEO_PANEL;
