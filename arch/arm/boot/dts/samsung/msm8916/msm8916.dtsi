@@ -359,8 +359,10 @@
 
 	clock_cpu: qcom,clock-a7@0b011050 {
 		compatible = "qcom,clock-a53-8916";
-		reg = <0x0b011050 0x8>;
-		reg-names = "rcg-base";
+		reg = <0x0b011050 0x8>,
+		      <0x0005c004 0x8>,
+		      <0x0005c00c 0x8>;
+		reg-names = "rcg-base", "efuse1", "efuse";
 		qcom,safe-freq = < 400000000 >;
 		cpu-vdd-supply = <&apc_vreg_corner>;
 		clocks = <&clock_gcc clk_gpll0_ao_clk_src>,
@@ -373,9 +375,39 @@
 			<  400000000 2>,
 			<  533333000 3>,
 			<  800000000 4>,
-			<  998400000 5>,
-			< 1094400000 6>,
-			< 1190400000 7>;
+			< 1094400000 5>,
+			< 1190400000 6>,
+			< 1248000000 7>;
+
+		qcom,speed1-bin-v0 =
+			<          0 0>,
+			<  200000000 1>,
+			<  400000000 2>,
+			<  533333000 3>,
+			<  800000000 4>,
+			< 1094400000 5>,
+			< 1190400000 6>;
+
+		qcom,speed0-bin-v1 =
+			<          0 0>,
+			<  200000000 1>,
+			<  400000000 2>,
+			<  533333000 3>,
+			<  800000000 4>,
+			< 1094400000 5>,
+			< 1190400000 6>,
+			< 1248000000 7>;
+
+		qcom,speed2-bin-v1 =
+			<          0 0>,
+			<  200000000 1>,
+			<  400000000 2>,
+			<  533333000 3>,
+			<  800000000 4>,
+			< 1094400000 5>,
+			< 1190400000 6>,
+			< 1248000000 7>,
+			< 1363200000 8>;
 	};
 
 	cpubw: qcom,cpubw@0 {
@@ -402,11 +434,11 @@
 		cpubw-cpufreq {
 			target-dev = <&cpubw>;
 			cpu-to-dev-map =
-				 <  400000  762>,
-				 <  800000  1525>,
-				 <  998400  3051>,
-				 < 1094400  3051>,
-				 < 1190400  4066>;
+				 <  200000  762>,
+				 <  400000  1525>,
+				 <  800000  3051>,
+				 < 1094400  4066>,
+				 < 1363200  4066>;
 		};
 	};
 
@@ -424,9 +456,10 @@
 			 <  400000 >,
 			 <  533330 >,
 			 <  800000 >,
-			 <  998400 >,
 			 < 1094400 >,
-			 < 1190400 >;
+			 < 1152000 >,
+			 < 1209600 >,
+			 < 1363200 >;
 	};
 
 	qcom,sps {
@@ -1694,7 +1727,7 @@
 
 		qcom,vdd-apps-rstr{
 			qcom,vdd-rstr-reg = "vdd-apps";
-			qcom,levels = <533330 800000 998400>;
+			qcom,levels = <533330 800000 1094400>;
 			qcom,freq-req;
 		};
 	};
@@ -2123,8 +2156,8 @@
 		booster,wacom_stage = <0x0001>;	// supported stage with OR operation
 
 		booster,level = <2>;			// default level
-		booster,head = <200 1190400 0>;	// default head value <time cpu_freq bimc_freq>
-		booster,tail = <300 998400 0>;	// default tail value <time cpu_freq bimc_freq>
+		booster,head = <200 1363200 0>;	// default head value <time cpu_freq bimc_freq>
+		booster,tail = <300 1094400 0>;	// default tail value <time cpu_freq bimc_freq>
 		/* --- Old input booster version --- */
 
 		booster_key@1 {
@@ -2135,7 +2168,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head */
-			input_booster,cpu_freqs = <1190400>;
+			input_booster,cpu_freqs = <1363200>;
 			input_booster,bimc_freqs = <0>;
 
 			/* Time table */
@@ -2151,7 +2184,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head */
-			input_booster,cpu_freqs = <998400>;
+			input_booster,cpu_freqs = <1094400>;
 			input_booster,bimc_freqs = <0>;
 
 			/* Time table */
@@ -2166,7 +2199,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head, 2_Head, 2_Tail */
-			input_booster,cpu_freqs = <1190400 1190400 998400>;
+			input_booster,cpu_freqs = <1363200 1363200 1094400>;
 			input_booster,bimc_freqs = <0 0 0>;
 
 			/* Time table */
@@ -2181,7 +2214,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head 2_Tail*/
-			input_booster,cpu_freqs = <1190400 1190400>;
+			input_booster,cpu_freqs = <1363200 1363200>;
 			input_booster,bimc_freqs = <0 0>;
 
 			/* Time table */
@@ -2196,7 +2229,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head 2_Tail*/
-			input_booster,cpu_freqs = <1190400 1190400>;
+			input_booster,cpu_freqs = <1363200 1363200>;
 			input_booster,bimc_freqs = <0 0>;
 
 			/* Time table */
@@ -2211,7 +2244,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head 2_Tail*/
-			input_booster,cpu_freqs = <1190400 998400>;
+			input_booster,cpu_freqs = <1363200 1094400>;
 			input_booster,bimc_freqs = <0 0>;
 
 			/* Time table */
@@ -2226,7 +2259,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head 2_Tail*/
-			input_booster,cpu_freqs = <1190400 0>;
+			input_booster,cpu_freqs = <1363200 0>;
 			input_booster,bimc_freqs = <0 0>;
 
 			/* Time table */
@@ -2241,7 +2274,7 @@
 
 			/* Frequency table */
 			/* for level	:	1_Head 2_Tail*/
-			input_booster,cpu_freqs = <1190400 998400>;
+			input_booster,cpu_freqs = <1363200 1094400>;
 			input_booster,bimc_freqs = <0 0>;
 
 			/* Time table */
