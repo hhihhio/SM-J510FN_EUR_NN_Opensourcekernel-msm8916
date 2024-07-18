@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ARCH=arm
-export CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
+export CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/arm/gcc-linaro-4.9-2016.02-x86_64_arm-eabi/bin/arm-eabi-
 mkdir output
 
 make -C $(pwd) O=output clean && make -C $(pwd) O=output mrproper
