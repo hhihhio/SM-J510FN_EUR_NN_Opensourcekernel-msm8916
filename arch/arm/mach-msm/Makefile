@@ -53,6 +53,7 @@ obj-$(CONFIG_SM5703_MUIC) += sec-switch.o
 
 obj-$(CONFIG_MSM_LPM_TEST) += test-lpm.o
 
+obj-$(CONFIG_MPDECISION_HOTPLUG) += msm_mpdecision.o
 
 obj-$(CONFIG_ARCH_MSM8974) += gpiomux-v2.o gpiomux.o
 obj-$(CONFIG_ARCH_MDM9630) += gpiomux-v2.o gpiomux.o
